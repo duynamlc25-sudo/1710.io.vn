@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1710.io.vn | KHU VỰC CẤM ĐỊA</title>
+  <title>DNA — Trang Thông Tin Cá Nhân</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Quicksand:wght@500;700&display=swap');
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --border: #334155;
+    }
 
     * {
       box-sizing: border-box;
@@ -14,224 +22,200 @@
     }
 
     body {
-      background-color: #0b0c10;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 42, 133, 0.2) 0%, transparent 45%),
-        radial-gradient(circle at 80% 70%, rgba(0, 243, 255, 0.2) 0%, transparent 45%);
-      color: #ffffff;
-      font-family: 'Quicksand', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      padding: 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    .hazard-tape {
-      position: fixed;
-      left: -10%;
-      width: 120%;
-      height: 34px;
-      background: repeating-linear-gradient(
-        -45deg,
-        #fcee0a,
-        #fcee0a 20px,
-        #111 20px,
-        #111 40px
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Chakra Petch', sans-serif;
-      font-weight: 700;
-      letter-spacing: 2px;
-      font-size: 13px;
-      box-shadow: 0 0 15px rgba(252, 238, 10, 0.4);
-      z-index: 10;
-    }
-
-    .tape-top { top: 20px; transform: rotate(-1.5deg); }
-    .tape-bottom { bottom: 20px; transform: rotate(1.5deg); }
-
-    .tape-text {
-      background: #111;
-      color: #fcee0a;
-      padding: 3px 16px;
-      border: 1px solid #fcee0a;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      background: rgba(20, 22, 34, 0.9);
-      border: 2px solid #00f3ff;
-      box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
-      border-radius: 16px;
-      max-width: 550px;
       width: 100%;
-      padding: 35px 25px;
-      text-align: center;
-      position: relative;
-      z-index: 5;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
-    .badge {
-      display: inline-block;
-      background: #ff2a85;
-      color: #fff;
-      font-family: 'Chakra Petch', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 5px 14px;
-      border-radius: 50px;
-      letter-spacing: 1.5px;
-      margin-bottom: 15px;
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      background-color: rgba(15, 23, 42, 0.9);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
     }
 
-    .anime-emoji {
-      font-size: 52px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-family: 'Chakra Petch', sans-serif;
-      font-size: 28px;
-      text-transform: uppercase;
-      color: #fcee0a;
-      text-shadow: 2px 2px 0px #ff2a85;
-      margin-bottom: 15px;
-    }
-
-    .dialogue-box {
-      background: rgba(0, 0, 0, 0.6);
-      border-left: 4px solid #ff2a85;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: left;
-      margin: 18px 0;
-      font-size: 15.5px;
-      line-height: 1.6;
-      color: #e0e6ed;
-    }
-
-    .dialogue-box strong { color: #00f3ff; }
-
-    .progress-wrapper { margin: 20px 0; text-align: left; }
-
-    .progress-label {
+    .nav {
       display: flex;
       justify-content: space-between;
-      font-family: 'Chakra Petch', sans-serif;
-      font-size: 13px;
-      color: #00f3ff;
-      margin-bottom: 6px;
+      align-items: center;
+      height: 64px;
     }
 
-    .progress-bar {
-      width: 100%;
-      height: 12px;
-      background: #1a1d2e;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 243, 255, 0.4);
-    }
-
-    .progress-fill {
-      width: 69%;
-      height: 100%;
-      background: linear-gradient(90deg, #ff2a85, #00f3ff);
-    }
-
-    .btn-troll {
-      background: transparent;
-      color: #fcee0a;
-      border: 2px solid #fcee0a;
-      font-family: 'Chakra Petch', sans-serif;
+    .logo {
       font-weight: 700;
-      font-size: 15px;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
       padding: 12px 24px;
       border-radius: 8px;
-      cursor: pointer;
-      margin-top: 8px;
-      text-transform: uppercase;
+      transition: background-color 0.2s ease;
     }
 
-    .btn-troll:hover {
-      background: #fcee0a;
-      color: #000;
+    .btn:hover {
+      background-color: var(--accent-hover);
+      color: #ffffff;
     }
 
-    #secret-msg {
-      margin-top: 15px;
-      font-size: 15px;
-      color: #ff2a85;
-      font-weight: 700;
-      min-height: 22px;
+    /* Sections / Cards */
+    section {
+      padding: 48px 0;
     }
 
-    .footer-tag {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #8892b0;
-      font-family: 'Chakra Petch', sans-serif;
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        gap: 14px;
+        font-size: 0.85rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="hazard-tape tape-top">
-    <span class="tape-text">⚠️ WARNING: KẾT GIỚI ĐANG THI CÔNG • CẤM XÂM NHẬP ⚠️</span>
-  </div>
-
-  <div class="container">
-    <div class="badge">SYSTEM ALERT • ERROR 403-SENPAI</div>
-    <div class="anime-emoji">🚧(＞﹏＜)🚧</div>
-    <h1>Dừng lại ngay, Lữ Khách!</h1>
-
-    <div class="dialogue-box">
-      <p><strong>[Hệ Thống]:</strong> Phát hiện sinh vật lạ đang cố tình dòm ngó <strong>1710.io.vn</strong> khi kết giới chưa hoàn thiện!</p>
-      <br />
-      <p>Pháp sư quản trị đang bận <em>triệu hồi code</em> và uống trà sữa để hoàn thiện trang web. Việc cố tình truy cập lúc này có thể khiến bạn bị <strong>dính lời nguyền 404</strong> hoặc bay màu khỏi server!</p>
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">DNA</a>
+      <ul class="nav-links">
+        <li><a href="#gioi-thieu">Giới thiệu</a></li>
+        <li><a href="#noi-dung">Nội dung</a></li>
+        <li><a href="#lien-he">Liên hệ</a></li>
+      </ul>
     </div>
+  </header>
 
-    <div class="progress-wrapper">
-      <div class="progress-label">
-        <span>TIẾN ĐỘ TRIỆU HỒI GIAO DIỆN</span>
-        <span>69% (Đang niệm chú...)</span>
+  <main>
+    <section class="hero" id="gioi-thieu">
+      <div class="container">
+        <h1>Chào mừng đến với DNA</h1>
+        <p>
+          Đây là khung trang web cơ bản được thiết kế bằng HTML và CSS thuần. Bạn có thể chỉnh sửa trực tiếp nội dung, màu sắc và thêm các chuyên mục mới theo mục đích sử dụng.
+        </p>
+        <a href="#noi-dung" class="btn">Khám phá ngay</a>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
+    </section>
+
+    <section id="noi-dung">
+      <div class="container">
+        <h2 class="section-title">Chuyên mục nổi bật</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Mục 01</h3>
+            <p>Mô tả ngắn gọn cho phần nội dung đầu tiên của bạn, cập nhật thông tin hoặc bài viết chính.</p>
+          </article>
+          <article class="card">
+            <h3>Mục 02</h3>
+            <p>Trình bày dự án, tài liệu, chia sẻ cá nhân hoặc các liên kết hữu ích cho người truy cập.</p>
+          </article>
+          <article class="card">
+            <h3>Mục 03</h3>
+            <p>Dễ dàng mở rộng thêm thẻ mới bằng cách sao chép khối <code>&lt;article class="card"&gt;</code>.</p>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <section id="lien-he">
+      <div class="container">
+        <div class="card">
+          <h3>Liên hệ</h3>
+          <p>Cập nhật email, mạng xã hội hoặc thông tin liên hệ của bạn tại đây.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 DNA. All rights reserved.</p>
     </div>
-
-    <button class="btn-troll" onclick="triggerWarning()">Tôi vẫn cố tình bấm vào đây!</button>
-    <div id="secret-msg"></div>
-
-    <div class="footer-tag">1710 HUB • KẾT GIỚI BẢO VỆ BỞI DUYNAMIC25</div>
-  </div>
-
-  <div class="hazard-tape tape-bottom">
-    <span class="tape-text">🚧 UNDER CONSTRUCTION • VUI LÒNG QUAY LẠI SAU 🚧</span>
-  </div>
-
-  <script>
-    let clickCount = 0;
-    const messages = [
-      "Này! Đã bảo là đang xây dựng mà, đừng có bấm nữa! (╬ Ò﹏Ó)",
-      "Bấm nữa là hệ thống tự động trừ 1000 điểm nhân phẩm đó nha! (¬_¬ )",
-      "Thôi được rồi, lì quá đi mất! Quay lại sau vài hôm nữa nhé Senpai~ (づ｡◕‿‿◕｡)づ"
-    ];
-
-    function triggerWarning() {
-      const msgBox = document.getElementById("secret-msg");
-      if (clickCount < messages.length) {
-        msgBox.textContent = messages[clickCount];
-        clickCount++;
-      } else {
-        msgBox.textContent = "Hệ thống đã khóa nút bấm vì bạn quá lì! (x_x)";
-      }
-    }
-  </script>
-
+  </footer>
 </body>
 </html>
